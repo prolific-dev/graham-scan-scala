@@ -24,15 +24,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: codecov/codecov-action@v2
-      - name: Build project and export Coverage to Coveralls
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-        run: |
-          export CI_BRANCH="${GITHUB_REF#refs/heads/}"
-          sbt clean jacoco jacocoCoveralls
+      - name: Clean
+        run: sbt clean
+      - name: Build project and get test reports
+        run: sbt jacoco
       - name: Download Codecov
         run: curl -Os https://uploader.codecov.io/latest/linux/codecov
       - name: Add x flag
         run: chmod +x codecov
       - name: Run Codecov
-        run: ./codecov -t ${{ secrets.CODECOV_TOKEN }}
+        run: ./codecov -s target\test-reports
