@@ -30,4 +30,4 @@ jobs:
       - name: Add x flag
         run: chmod +x codecov
       - name: Run Codecov
-        run: ./codecov
+        run: ./codecov -f
