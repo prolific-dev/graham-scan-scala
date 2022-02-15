@@ -20,6 +20,16 @@ lazy val root = project
       JacocoThresholds(),
       Seq(JacocoReportFormats.ScalaHTML, JacocoReportFormats.XML),
       "utf-8"
-    )
+    ),
+
+    jacocoExcludes := Seq(
+      "*aview.*",
+      "*GrahamScan.*",
+      "*GrahamScanModule.*",
+      "*Interface.scala"
+    ),
+
+    jacocoCoverallsServiceName := "github-actions",
+    jacocoCoverallsRepoToken := sys.env.get("COVERALLS_REPO_TOKEN")
   )
   .enablePlugins(JacocoCoverallsPlugin)
