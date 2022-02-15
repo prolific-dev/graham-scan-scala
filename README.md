@@ -1,4 +1,5 @@
 [![Scala CI](https://github.com/prolific-dev/graham-scan-scala/actions/workflows/scala.yml/badge.svg)](https://github.com/prolific-dev/graham-scan-scala/actions/workflows/scala.yml)
+[![codecov](https://codecov.io/gh/prolific-dev/graham-scan-scala/branch/main/graph/badge.svg?token=2DE270ZEDK)](https://codecov.io/gh/prolific-dev/graham-scan-scala)
 
 ## sbt project compiled with Scala 3
 
