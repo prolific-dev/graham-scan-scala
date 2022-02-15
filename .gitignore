@@ -42,7 +42,6 @@ project/.sbtserver
 # Scala-IDE specific
 .bloop/
 .metals/
-project/metals.sbt
 .scala_dependencies
 .worksheet
 .sc
