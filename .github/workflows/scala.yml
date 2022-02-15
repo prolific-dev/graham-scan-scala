@@ -20,13 +20,13 @@ jobs:
       run: sbt compile
 
   tests:
-    runs-on: ubuntu latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: codecov/codecov-action@v2
       - name: Build project and export Coverage to Coveralls
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-          COVERALLS_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
         run: |
           export CI_BRANCH="${GITHUB_REF#refs/heads/}"
           sbt clean jacoco jacocoCoveralls

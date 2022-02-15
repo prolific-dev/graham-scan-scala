@@ -13,5 +13,13 @@ lazy val root = project
     libraryDependencies += "com.google.inject" % "guice" % "4.2.3",
     libraryDependencies += ("net.codingwell" %% "scala-guice" % "5.0.2").cross(CrossVersion.for3Use2_13),
     libraryDependencies += ("com.typesafe.play" %% "play-json" % "2.9.2").cross(CrossVersion.for3Use2_13),
+
+    jacocoReportSettings := JacocoReportSettings(
+      "Jacoco Coverage Report",
+      None,
+      JacocoThresholds(),
+      Seq(JacocoReportFormats.ScalaHTML, JacocoReportFormats.XML),
+      "utf-8"
+    )
   )
   .enablePlugins(JacocoCoverallsPlugin)
