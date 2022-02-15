@@ -24,15 +24,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build project and export Coverage to Coveralls
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-          COVERALLS_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
-        run: |
-          export CI_BRANCH="${GITHUB_REF#refs/heads/}"
-          sbt clean jacoco jacocoCoveralls
+        run: sbt clean jacoco jacocoCoveralls
       - name: Download Codecov
         run: curl -Os https://uploader.codecov.io/latest/linux/codecov
       - name: Add x flag
         run: chmod +x codecov
       - name: Run Codecov
-        run: ./codecov -t ${{ secrets.CODECOV_TOKEN }}
+        run: ./codecov
