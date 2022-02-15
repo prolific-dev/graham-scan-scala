@@ -23,11 +23,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Build project and export Coverage to Coveralls
-        run: sbt clean jacoco jacocoCoveralls
+      - uses: codecov/codecov-action@v2
+      - name: Clean
+        run: sbt clean
+      - name: Build project and get test reports
+        run: sbt jacoco
       - name: Download Codecov
         run: curl -Os https://uploader.codecov.io/latest/linux/codecov
       - name: Add x flag
         run: chmod +x codecov
       - name: Run Codecov
-        run: ./codecov -f target\scala-3.1.0\jacoco\report\html\index.html
+        run: ./codecov
