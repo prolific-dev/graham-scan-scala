@@ -1,0 +1,57 @@
+# Mac
+.DS_Store
+
+# Visual Studio Code
+.vscode/
+
+# Eclipse
+bin/
+.settings/
+.classpath
+
+# IntelliJ
+.idea/
+.target/
+
+# Maven
+log/
+target/
+null/
+
+# Gradle
+.gradle/
+build/
+pom.xml
+
+# sbt
+.cache
+.history
+.lib/
+dist/*
+lib_managed/
+src.managed/
+project/boot/
+project/plugins/project/
+procet/target/
+project/project/
+logs/
+project/.sbtserver
+.sbtserver/
+.bsp/
+
+# Scala-IDE specific
+.bloop/
+.metals/
+project/metals.sbt
+.scala_dependencies
+.worksheet
+.sc
+
+# Sonar
+.sonar/
+
+# Application
+*.log
+
+# Project
+templates/
