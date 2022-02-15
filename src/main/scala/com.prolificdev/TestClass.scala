@@ -1,5 +1,5 @@
 package `com.prolificdev`
 
-class Test {
+case class TestClass() {
   def returnTest = 1
 }
