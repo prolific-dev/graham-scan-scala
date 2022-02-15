@@ -1,8 +1,10 @@
 name: Scala CI
 
 on:
-  pull_requests:
-  branches: [ main ]
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
@@ -15,6 +17,6 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '11'
-        distribuiton: 'adopt'
+        distribution: 'adopt'
     - name: Run tests
       run: sbt test
