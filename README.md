@@ -1,3 +1,5 @@
+[![Scala CI](https://github.com/prolific-dev/graham-scan-scala/actions/workflows/scala.yml/badge.svg)](https://github.com/prolific-dev/graham-scan-scala/actions/workflows/scala.yml)
+
 ## sbt project compiled with Scala 3
 
 ### Usage
