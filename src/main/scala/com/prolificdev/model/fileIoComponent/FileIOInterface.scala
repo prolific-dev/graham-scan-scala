@@ -1,7 +1,10 @@
 package com.prolificdev.model.fileIoComponent
 
-trait FileIOInterface {
-    def load: Unit
 
-    def save: Unit
+import com.prolificdev.model.pointComponent.pointBasicImpl.Point
+
+trait FileIOInterface {
+    def load: Seq[Point]
+
+    def save(points: Seq[Point]): Unit
 }
