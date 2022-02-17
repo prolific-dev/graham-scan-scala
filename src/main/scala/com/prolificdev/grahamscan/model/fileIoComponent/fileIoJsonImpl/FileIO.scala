@@ -1,9 +1,8 @@
-package com.prolificdev.model.fileIoComponent.fileIoJsonImpl
+package com.prolificdev.grahamscan.model.fileIoComponent.fileIoJsonImpl
 
 import com.google.inject.Inject
-import com.prolificdev.{GrahamScan, GrahamScanModule}
-import com.prolificdev.model.fileIoComponent.FileIOInterface
-import com.prolificdev.model.Point
+import com.prolificdev.grahamscan.model.fileIoComponent.FileIOInterface
+import com.prolificdev.grahamscan.model.Point
 import play.api.libs.json.{JsObject, Json}
 
 import java.io.{File, PrintWriter}
@@ -19,8 +18,8 @@ class FileIO @Inject extends FileIOInterface {
     val size = (json \ "size").get.toString.toInt
     var seq: Seq[Point] = Seq()
     for (i <- 0 until size) {
-      val x = (json \\ "x") (i).as[Int]
-      val y = (json \\ "y") (i).as[Int]
+      val x = (json \\ "x") (i).as[Double]
+      val y = (json \\ "y") (i).as[Double]
       seq = seq :+ Point(x, y)
     }
     seq
