@@ -1,14 +1,14 @@
 package com.prolificdev.grahamscan
 
 import com.google.inject.AbstractModule
-import com.prolificdev.grahamscan.controller.controllerComponent.ControllerInterface
 import com.prolificdev.grahamscan.controller.controllerComponent.controllerBasicImpl.Controller
-import com.prolificdev.grahamscan.model.calculateComponent.CalculateInterface
+import com.prolificdev.grahamscan.controller.controllerComponent.ControllerInterface
 import com.prolificdev.grahamscan.model.calculateComponent.calculateBasicImpl.Calculate
-import com.prolificdev.grahamscan.model.fileIoComponent.FileIOInterface
+import com.prolificdev.grahamscan.model.calculateComponent.CalculateInterface
 import com.prolificdev.grahamscan.model.fileIoComponent.fileIoJsonImpl.FileIO
-import com.prolificdev.grahamscan.model.geometryComponent.GeometryInterface
+import com.prolificdev.grahamscan.model.fileIoComponent.FileIOInterface
 import com.prolificdev.grahamscan.model.geometryComponent.geometryBasicImpl.Geometry
+import com.prolificdev.grahamscan.model.geometryComponent.GeometryInterface
 
 class GrahamScanModule extends AbstractModule {
 
