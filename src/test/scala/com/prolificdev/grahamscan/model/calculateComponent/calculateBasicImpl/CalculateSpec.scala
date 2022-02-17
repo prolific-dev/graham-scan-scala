@@ -8,9 +8,7 @@ class CalculateSpec extends AnyWordSpec with Matchers {
     "created" should {
       val calc = new Calculate
 
-      "have a method to get a raw data set" in {
-
-      }
+      "have a method to get a raw data set" in {}
     }
   }
 }
