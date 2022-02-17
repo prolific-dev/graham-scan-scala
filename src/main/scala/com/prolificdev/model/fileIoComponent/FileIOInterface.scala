@@ -1,6 +1,6 @@
 package com.prolificdev.model.fileIoComponent
 
-import com.prolificdev.model.pointComponent.pointBasicImpl.Point
+import com.prolificdev.model.Point
 
 trait FileIOInterface {
   def load: Seq[Point]

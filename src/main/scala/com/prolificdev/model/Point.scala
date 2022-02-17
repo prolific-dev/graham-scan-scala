@@ -1,4 +1,4 @@
-package com.prolificdev.model.pointComponent.pointBasicImpl
+package com.prolificdev.model
 
 case class Point(x: Int, y: Int) {
 

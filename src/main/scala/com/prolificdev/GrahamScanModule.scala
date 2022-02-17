@@ -1,9 +1,9 @@
 package com.prolificdev
 
 import com.google.inject.AbstractModule
-import com.prolificdev.model.fileIoComponent.FileIO
 import com.prolificdev.model.fileIoComponent.FileIOInterface
-import com.prolificdev.model.pointComponent.pointBasicImpl.Point
+import com.prolificdev.model.fileIoComponent.fileIoJsonImpl.FileIO
+
 
 class GrahamScanModule extends AbstractModule {
 
