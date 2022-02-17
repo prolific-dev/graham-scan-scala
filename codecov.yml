@@ -1,0 +1,3 @@
+ignore:
+  - "**/GrahamScan.scala"
+  - "**/GrahamScanModule.scala"
