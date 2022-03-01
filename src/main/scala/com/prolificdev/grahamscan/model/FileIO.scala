@@ -1,35 +1,33 @@
-package com.prolificdev.grahamscan.model.fileIoComponent.fileIoJsonImpl
+package com.prolificdev.grahamscan.model
 
-import com.google.inject.Inject
-import com.prolificdev.grahamscan.model.fileIoComponent.FileIOInterface
 import com.prolificdev.grahamscan.model.Point
 import play.api.libs.json.{JsObject, Json}
 
 import java.io.{File, PrintWriter}
 import scala.io.Source
 
-class FileIO @Inject extends FileIOInterface {
+class FileIO {
   val file = new File("src/main/resources/json/points.json")
 
-  override def load: Seq[Point] =
+  def load: Vector[Point] =
     val source = Source.fromFile(file)
     val lines = source.getLines.mkString
     val json = Json.parse(lines)
     val size = (json \ "size").get.toString.toInt
-    var seq: Seq[Point] = Seq()
+    var vector: Vector[Point] = Vector()
     for (i <- 0 until size) {
       val x = (json \\ "x") (i).as[Double]
       val y = (json \\ "y") (i).as[Double]
-      seq = seq :+ Point(x, y)
+      vector = vector :+ Point(x, y)
     }
-    seq
+    vector
 
-  override def save(points: Seq[Point]): Unit =
+  def save(points: Vector[Point]): Unit =
     val pw = new PrintWriter(file)
     pw.write(Json.prettyPrint(pointsToJson(points)))
     pw.close()
 
-  def pointsToJson(points: Seq[Point]): JsObject =
+  def pointsToJson(points: Vector[Point]): JsObject =
     Json.obj(
       "size" -> points.size,
       "points" -> Json.toJson(
