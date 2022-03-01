@@ -1,6 +1,6 @@
-package com.prolificdev.grahamscan.model.geometryComponent.geometryBasicImpl
+package com.prolificdev.grahamscan.model
 
-import com.prolificdev.grahamscan.model.Point
+import com.prolificdev.grahamscan.model.{Geometry, Point}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
@@ -19,6 +19,14 @@ class GeometrySpec extends AnyWordSpec with Matchers {
         geo.angle(center, bottom) should be(180.0)
         geo.angle(center, left) should be(90.0)
         geo.angle(center, right) should be(270.0)
+      }
+      "have a method to calculate the distance between two points" in {
+        val p1 = Point(0, 0)
+        val p2 = Point(1, 1)
+
+        geo.distance(p1, p2) should be(math.sqrt(2))
+        geo.distance(p2, p1) should be(math.sqrt(2))
+
       }
     }
   }
