@@ -1,6 +1,6 @@
-package com.prolificdev.grahamscan.model
+package com.prolificdev.grahamscan.util
 
-import com.prolificdev.grahamscan.model.Point
+import com.prolificdev.grahamscan.util.Point
 
 import scala.math.*
 

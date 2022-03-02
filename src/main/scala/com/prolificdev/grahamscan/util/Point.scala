@@ -1,4 +1,4 @@
-package com.prolificdev.grahamscan.model
+package com.prolificdev.grahamscan.util
 
 case class Point(x: Double, y: Double) {
 

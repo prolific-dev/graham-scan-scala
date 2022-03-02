@@ -1,6 +1,6 @@
-package com.prolificdev.grahamscan.model
+package com.prolificdev.grahamscan.util
 
-import com.prolificdev.grahamscan.model.{Geometry, Point}
+import com.prolificdev.grahamscan.util.{Geometry, Point}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
