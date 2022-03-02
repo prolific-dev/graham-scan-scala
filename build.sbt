@@ -30,8 +30,7 @@ lazy val root = project
     ),
     jacocoExcludes := Seq(
       "*aview.*",
-      "*GrahamScan*",
-      "*Controller*"
+      "*GrahamScan*"
     ),
     jacocoCoverallsServiceName := "github-actions",
     jacocoCoverallsRepoToken := sys.env.get("COVERALLS_REPO_TOKEN")
