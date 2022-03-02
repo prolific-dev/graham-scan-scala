@@ -1,4 +1,6 @@
-package com.prolificdev.grahamscan.model
+package com.prolificdev.grahamscan.model.calculateComponent.calculateBasicImpl
+
+import com.prolificdev.grahamscan.util.Point
 
 import scala.collection.mutable
 

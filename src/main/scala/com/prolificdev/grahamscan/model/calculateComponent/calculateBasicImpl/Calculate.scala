@@ -1,11 +1,14 @@
-package com.prolificdev.grahamscan.model
+package com.prolificdev.grahamscan.model.calculateComponent.calculateBasicImpl
 
-import com.prolificdev.grahamscan.model.Point
+import com.google.inject.Inject
+import com.prolificdev.grahamscan.model.calculateComponent.calculateBasicImpl.Scan
+import com.prolificdev.grahamscan.model.calculateComponent.CalculateInterface
+import com.prolificdev.grahamscan.util.{Geometry, Point}
 import com.prolificdev.grahamscan.GrahamScanModule
 
 import scala.collection.{immutable, mutable}
 
-class Calculate(input: Vector[Point]) {
+case class Calculate @Inject(input: Vector[Point]) extends CalculateInterface {
   private val geo: Geometry = new Geometry
   private val scan: Scan = Scan(startingPoint, collinearPoints, sortedData)
 
@@ -23,7 +26,9 @@ class Calculate(input: Vector[Point]) {
 
   def sortedData: Vector[Point] = maxDistancePoints.toVector.sortBy(_._1).map(_._2)
 
-  def hull: Vector[Point] = scan.hull.toVector
+  override def hull: Vector[Point] = scan.hull.toVector
 
-  def inner: Vector[Point] = scan.inner.toVector
+  override def inner: Vector[Point] = scan.inner.toVector
+
+  override def changeInput(newInput: Vector[Point]): Calculate = copy(input = newInput)
 }

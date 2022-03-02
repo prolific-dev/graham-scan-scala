@@ -1,12 +1,14 @@
-package com.prolificdev.grahamscan.model
+package com.prolificdev.grahamscan.model.fileIoComponent.fileIoJsonImpl
 
-import com.prolificdev.grahamscan.model.Point
+import com.google.inject.Inject
+import com.prolificdev.grahamscan.model.fileIoComponent.FileIoInterface
+import com.prolificdev.grahamscan.util.Point
 import play.api.libs.json.{JsObject, Json}
 
 import java.io.{File, PrintWriter}
 import scala.io.Source
 
-class FileIO {
+class FileIO @Inject extends FileIoInterface {
   val file = new File("src/main/resources/json/points.json")
 
   def load: Vector[Point] =

@@ -1,5 +1,6 @@
-package com.prolificdev.grahamscan.model
+package com.prolificdev.grahamscan.model.fileIoComponent.fileIoJsonImpl
 
+import com.prolificdev.grahamscan.util.Point
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 

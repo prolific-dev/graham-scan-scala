@@ -1,6 +1,7 @@
-package com.prolificdev.grahamscan.model
+package com.prolificdev.grahamscan.model.calculateComponent.calculateBasicImpl
 
-import com.prolificdev.grahamscan.model.Calculate
+import com.prolificdev.grahamscan.model.calculateComponent.calculateBasicImpl.Calculate
+import com.prolificdev.grahamscan.util.{Geometry, Point}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
