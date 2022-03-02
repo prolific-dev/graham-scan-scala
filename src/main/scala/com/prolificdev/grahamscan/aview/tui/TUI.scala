@@ -31,5 +31,4 @@ class TUI(controller: ControllerInterface) extends Observer {
     println("\nInner Data: " + controller.calc.inner.toString)
     println("Hull Data" + controller.calc.hull.toString)
 
-
 }
