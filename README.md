@@ -2,11 +2,14 @@
 [![codecov](https://codecov.io/gh/prolific-dev/graham-scan-scala/branch/main/graph/badge.svg?token=2DE270ZEDK)](https://codecov.io/gh/prolific-dev/graham-scan-scala)
 [![Coverage Status](https://coveralls.io/repos/github/prolific-dev/graham-scan-scala/badge.svg?branch=main&kill_cache=1)](https://coveralls.io/github/prolific-dev/graham-scan-scala?branch=main&kill_cache=1)
 
+## Graham Scan - Convex Hull Calculation Software
+
 ## sbt project compiled with Scala 3
 
 ### Usage
 
-This is a normal sbt project. You can compile code with `sbt compile`, run it with `sbt run`, and `sbt console` will start a Scala 3 REPL.
+This is a normal sbt project. You can compile code with `sbt compile`, run it with `sbt run`, and `sbt console` will
+start a Scala 3 REPL.
 
 For more information on the sbt-dotty plugin, see the
 [scala3-example-project](https://github.com/scala/scala3-example-project/blob/main/README.md).
