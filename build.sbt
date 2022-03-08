@@ -11,6 +11,7 @@ lazy val root = project
     libraryDependencies += "com.google.inject" % "guice" % "4.2.3",
     libraryDependencies += ("net.codingwell" %% "scala-guice" % "5.0.2").cross(CrossVersion.for3Use2_13),
     libraryDependencies += ("com.typesafe.play" %% "play-json" % "2.9.2").cross(CrossVersion.for3Use2_13),
+    libraryDependencies += ("org.scalafx" %% "scalafx" % "17.0.1-R26").cross(CrossVersion.for3Use2_13),
     libraryDependencies ++= {
       lazy val osName = System.getProperty("os.name") match {
         case n if n.startsWith("Linux") => "linux"
