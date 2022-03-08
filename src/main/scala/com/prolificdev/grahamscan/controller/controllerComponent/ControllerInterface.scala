@@ -9,7 +9,13 @@ trait ControllerInterface extends Observable {
 
   def status: Status
 
+  def changeInput(points: Vector[Point]): Unit
+
+  def clear(): Unit
+
   def save(points: Vector[Point]): Unit
 
-  def load: Unit
+  def load(): Unit
+
+  def convert(): Unit
 }

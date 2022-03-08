@@ -14,13 +14,28 @@ class Controller(var calc: CalculateInterface) extends ControllerInterface {
   val io: FileIoInterface = injector.getInstance(classOf[FileIoInterface])
   var status: Status = Status.IDLE
 
+  override def clear(): Unit =
+    changeInput(Vector(Point(0, 0)))
+    status = Status.CLEARED
+    notifyObserver()
+
+  override def changeInput(points: Vector[Point]): Unit =
+    calc = injector.getInstance(classOf[CalculateInterface]).changeInput(points)
+    status = Status.CHANGED
+    notifyObserver()
+
   override def save(points: Vector[Point]): Unit =
     io.save(points)
     status = Status.SAVED
-    notifyObserver
+    notifyObserver()
 
-  override def load: Unit =
-    calc = injector.getInstance(classOf[CalculateInterface]).changeInput(io.load)
+  override def load(): Unit =
+    changeInput(io.load)
     status = Status.LOADED
-    notifyObserver
+    notifyObserver()
+
+  override def convert(): Unit =
+    changeInput(io.convert)
+    status = Status.CONVERTED
+    notifyObserver()
 }

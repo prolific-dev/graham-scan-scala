@@ -20,10 +20,16 @@ class ControllerSpec extends AnyWordSpec with Matchers {
 
       "have a always a status" in {
         controller.status should be(Status.IDLE)
+        controller.changeInput(Vector(Point(0, 0)))
+        controller.status should be(Status.CHANGED)
+        controller.clear()
+        controller.status should be(Status.CLEARED)
         controller.save(points)
         controller.status should be(Status.SAVED)
-        controller.load
+        controller.load()
         controller.status should be(Status.LOADED)
+        controller.convert()
+        controller.status should be(Status.CONVERTED)
       }
     }
 
@@ -31,9 +37,16 @@ class ControllerSpec extends AnyWordSpec with Matchers {
       val controller = new Controller(calc)
       var updated = false
       val observer = new Observer {
-        override def update: Unit = updated = true
+        override def update(): Unit = updated = true
       }
       controller.add(observer)
+
+      "notify its Observer after clear" in {
+        updated should be(false)
+        controller.clear()
+        updated should be(true)
+        updated = false // reset for further tests
+      }
 
       "notify its Observer after save" in {
         updated should be(false)
@@ -44,7 +57,14 @@ class ControllerSpec extends AnyWordSpec with Matchers {
 
       "notify its Observer after load" in {
         updated should be(false)
-        controller.load
+        controller.load()
+        updated should be(true)
+        updated = false // reset for further tests
+      }
+
+      "notify its Observer after convert" in {
+        updated should be(false)
+        controller.convert()
         updated should be(true)
         updated = false // reset for further tests
       }
