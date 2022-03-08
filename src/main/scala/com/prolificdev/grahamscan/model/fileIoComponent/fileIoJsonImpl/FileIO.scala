@@ -6,12 +6,27 @@ import com.prolificdev.grahamscan.util.Point
 import play.api.libs.json.{JsObject, Json}
 
 import java.io.{File, PrintWriter}
+import java.net.URI
 import scala.io.Source
 
 class FileIO @Inject extends FileIoInterface {
-  val file = new File("src/main/resources/json/points.json")
+  val uri: URI = getClass.getResource("/json/points.json").toURI
+  val file = new File(uri)
 
-  def load: Vector[Point] =
+  override def convert: Vector[Point] =
+    val dirtyURI = getClass.getResource("/txt/dirty.txt").toURI
+    val dirtyFile = new File(dirtyURI)
+    val source = Source.fromFile(dirtyFile)
+    val lines = source.getLines
+    lines
+      .map(line => {
+        val x = line.split(",")(0).toDouble
+        val y = line.split(",")(1).toDouble
+        Point(x, y)
+      })
+      .toVector
+
+  override def load: Vector[Point] =
     val source = Source.fromFile(file)
     val lines = source.getLines.mkString
     val json = Json.parse(lines)
@@ -24,7 +39,7 @@ class FileIO @Inject extends FileIoInterface {
     }
     vector
 
-  def save(points: Vector[Point]): Unit =
+  override def save(points: Vector[Point]): Unit =
     val pw = new PrintWriter(file)
     pw.write(Json.prettyPrint(pointsToJson(points)))
     pw.close()
@@ -32,9 +47,7 @@ class FileIO @Inject extends FileIoInterface {
   def pointsToJson(points: Vector[Point]): JsObject =
     Json.obj(
       "size" -> points.size,
-      "points" -> Json.toJson(
-        for i <- points.indices yield pointToJson(points(i))
-      )
+      "points" -> Json.toJson(for i <- points.indices yield pointToJson(points(i)))
     )
 
   def pointToJson(point: Point): JsObject = Json.obj("x" -> point.x, "y" -> point.y)
