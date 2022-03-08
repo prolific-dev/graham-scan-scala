@@ -7,5 +7,5 @@ class Observable {
 
   def remove(s: Observer): Unit = subscribers = subscribers.filterNot(o => o == s)
 
-  def notifyObserver: Unit = subscribers.foreach(o => o.update)
+  def notifyObserver(): Unit = subscribers.foreach(o => o.update())
 }

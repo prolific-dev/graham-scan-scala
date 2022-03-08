@@ -9,7 +9,7 @@ class ObserverSpec extends AnyWordSpec with Matchers {
       var updated = false
       val observable = new Observable
       val observer = new Observer {
-        override def update: Unit = updated = true
+        override def update(): Unit = updated = true
       }
 
       "have a subscriber" in {
