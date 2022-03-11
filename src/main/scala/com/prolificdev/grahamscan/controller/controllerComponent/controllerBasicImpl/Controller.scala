@@ -9,6 +9,8 @@ import com.prolificdev.grahamscan.model.fileIoComponent.FileIoInterface
 import com.prolificdev.grahamscan.util.Point
 import com.prolificdev.grahamscan.GrahamScanModule
 
+import java.io.File
+
 class Controller(var calc: CalculateInterface) extends ControllerInterface {
   val injector: Injector = Guice.createInjector(new GrahamScanModule)
   val io: FileIoInterface = injector.getInstance(classOf[FileIoInterface])
@@ -24,18 +26,18 @@ class Controller(var calc: CalculateInterface) extends ControllerInterface {
     status = Status.CHANGED
     notifyObserver()
 
-  override def save(points: Vector[Point]): Unit =
-    io.save(points)
+  override def save(points: Vector[Point], file: File): Unit =
+    io.save(points, file)
     status = Status.SAVED
     notifyObserver()
 
-  override def load(): Unit =
-    changeInput(io.load)
+  override def load(file: File): Unit =
+    calc = calc.changeInput(io.load(file))
     status = Status.LOADED
     notifyObserver()
 
-  override def convert(): Unit =
-    changeInput(io.convert)
+  override def convert(file: File): Unit =
+    calc = calc.changeInput(io.convert(file))
     status = Status.CONVERTED
     notifyObserver()
 }

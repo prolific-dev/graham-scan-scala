@@ -22,9 +22,9 @@ class TUI(controller: ControllerInterface) extends Observer {
   def processInputLine(input: String): Unit =
     input match {
       case "n" => controller.clear()
-      case "c" => controller.convert()
-      case "s" => controller.save(controller.calc.input)
-      case "l" => controller.load()
+      //      case "c" => controller.convert()
+      //      case "s" => controller.save(controller.calc.input)
+      //      case "l" => controller.load()
     }
 
   override def update(): Unit =

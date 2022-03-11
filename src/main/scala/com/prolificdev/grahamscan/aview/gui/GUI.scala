@@ -1,8 +1,10 @@
 package com.prolificdev.grahamscan.aview.gui
 
 import com.prolificdev.grahamscan.aview.gui.chart.CalculateLineChart
+import com.prolificdev.grahamscan.aview.gui.filechooser.CalculateFileChooser
 import com.prolificdev.grahamscan.controller.controllerComponent.ControllerInterface
 import com.prolificdev.grahamscan.util.Observer
+import org.checkerframework.checker.units.qual.s
 import scalafx.application.{HostServices, JFXApp3}
 import scalafx.application.JFXApp3.PrimaryStage
 import scalafx.collections.ObservableBuffer
@@ -17,11 +19,17 @@ import scalafx.scene.layout.Priority.Always
 import scalafx.scene.text.{Font, Text, TextAlignment}
 import scalafx.scene.text.FontWeight.Bold
 import scalafx.scene.Scene
+import scalafx.stage.FileChooser
+import scalafx.stage.FileChooser.ExtensionFilter
 import scalafx.Includes.*
 
+import java.io.File
+import scala.util.{Failure, Success, Try}
+
 class GUI(controller: ControllerInterface) extends JFXApp3 with Observer {
-  var chartSceneIsSet = false
   controller.add(this)
+  var fileChooser = new CalculateFileChooser
+  var chartSceneIsSet = false
 
   def switchScene(): Unit =
     if (chartSceneIsSet)
@@ -41,7 +49,7 @@ class GUI(controller: ControllerInterface) extends JFXApp3 with Observer {
           wrappingWidth = 800
           font = Font("System", Bold, 38)
         },
-        new ImageView(getClass.getResource("/icons/icons8-g-64.png").toExternalForm) {
+        new ImageView(getClass.getResource("/icons/graham-scan-icon.png").toExternalForm) {
           margin = Insets(50, 300, 0, 300)
           alignment = Center
 
@@ -54,23 +62,26 @@ class GUI(controller: ControllerInterface) extends JFXApp3 with Observer {
             new Button("New") {
               prefWidth = 150
               prefHeight = 60
-              font = Font("System", 24)
+              font = Font("System", 22)
               onAction = e =>
                 controller.clear()
                 switchScene()
             },
-            new Button("Open") {
+            new Button("Open..") {
               prefWidth = 150
               prefHeight = 60
-              font = Font("System", 24)
+              font = Font("System", 22)
               onAction = e =>
-                controller.load()
+                fileChooser.loadFile(stage) match {
+                  case Success(file: File) => controller.load(file)
+                  case Failure(exception) => println("Failure. Reason: " + exception)
+                }
                 switchScene()
             },
             new Button("Exit") {
               prefWidth = 150
               prefHeight = 60
-              font = Font("System", 24)
+              font = Font("System", 22)
               onAction = e => sys.exit(0)
             }
           )
@@ -89,15 +100,30 @@ class GUI(controller: ControllerInterface) extends JFXApp3 with Observer {
                 new MenuItem("New") {
                   onAction = e => controller.clear()
                 },
-                new MenuItem("Load") {
-                  onAction = e => controller.load()
+                new MenuItem("Load..") {
+                  onAction = e => {
+                    fileChooser.loadFile(stage) match {
+                      case Success(file: File) => controller.load(file)
+                      case Failure(exception) => println("Failure. Reason: " + exception)
+                    }
+                  }
                 },
-                new MenuItem("Save") {
-                  onAction = e => controller.save(controller.calc.input)
+                new MenuItem("Save..") {
+                  onAction = e => {
+                    fileChooser.saveFile(stage) match {
+                      case Success(file: File) => controller.save(controller.calc.input, file)
+                      case Failure(exception) => println("Failure. Reason: " + exception)
+                    }
+                  }
                 },
                 new SeparatorMenuItem {},
-                new MenuItem("Convert") {
-                  onAction = e => controller.convert()
+                new MenuItem("Convert..") {
+                  onAction = e => {
+                    fileChooser.convertFile(stage) match {
+                      case Success(file: File) => controller.convert(file)
+                      case Failure(exception) => println("Failure. Reason: " + exception)
+                    }
+                  }
                 },
                 new SeparatorMenuItem {},
                 new MenuItem("Return") {
@@ -142,7 +168,7 @@ class GUI(controller: ControllerInterface) extends JFXApp3 with Observer {
     stage = new PrimaryStage {
       width = 800
       height = 600
-      icons += new Image(getClass.getResource("/icons/icons8-g-64.png").toExternalForm)
+      icons += new Image(getClass.getResource("/icons/graham-scan-icon.png").toExternalForm)
       title = "Graham Scan - Convex Hull Calculation"
       scene = if (chartSceneIsSet) chartScene else menuScene
     }

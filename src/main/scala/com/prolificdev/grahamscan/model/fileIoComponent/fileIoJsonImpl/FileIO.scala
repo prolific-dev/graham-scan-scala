@@ -10,13 +10,9 @@ import java.net.URI
 import scala.io.Source
 
 class FileIO @Inject extends FileIoInterface {
-  val uri: URI = getClass.getResource("/json/points.json").toURI
-  val file = new File(uri)
 
-  override def convert: Vector[Point] =
-    val dirtyURI = getClass.getResource("/txt/dirty.txt").toURI
-    val dirtyFile = new File(dirtyURI)
-    val source = Source.fromFile(dirtyFile)
+  override def convert(file: File): Vector[Point] =
+    val source = Source.fromFile(file)
     val lines = source.getLines
     lines
       .map(line => {
@@ -26,7 +22,7 @@ class FileIO @Inject extends FileIoInterface {
       })
       .toVector
 
-  override def load: Vector[Point] =
+  override def load(file: File): Vector[Point] =
     val source = Source.fromFile(file)
     val lines = source.getLines.mkString
     val json = Json.parse(lines)
@@ -39,7 +35,7 @@ class FileIO @Inject extends FileIoInterface {
     }
     vector
 
-  override def save(points: Vector[Point]): Unit =
+  override def save(points: Vector[Point], file: File): Unit =
     val pw = new PrintWriter(file)
     pw.write(Json.prettyPrint(pointsToJson(points)))
     pw.close()

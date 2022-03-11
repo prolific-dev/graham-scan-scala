@@ -4,6 +4,8 @@ import com.prolificdev.grahamscan.controller.Status
 import com.prolificdev.grahamscan.model.calculateComponent.CalculateInterface
 import com.prolificdev.grahamscan.util.{Observable, Point}
 
+import java.io.File
+
 trait ControllerInterface extends Observable {
   def calc: CalculateInterface
 
@@ -13,9 +15,9 @@ trait ControllerInterface extends Observable {
 
   def clear(): Unit
 
-  def save(points: Vector[Point]): Unit
+  def save(points: Vector[Point], file: File): Unit
 
-  def load(): Unit
+  def load(file: File): Unit
 
-  def convert(): Unit
+  def convert(file: File): Unit
 }
